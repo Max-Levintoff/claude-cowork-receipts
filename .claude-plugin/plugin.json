@@ -1,7 +1,11 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "cowork-receipts",
   "version": "0.1.0",
   "description": "Generates a personal Cowork activity report (a markdown \"receipt\" plus a styled, printable HTML receipt) from local Cowork session transcripts, grouped by topic with a manager-ready summary.",
   "author": { "name": "Maxime Levintoff" },
+  "homepage": "https://github.com/Max-Levintoff/claude-cowork-receipts",
+  "repository": "https://github.com/Max-Levintoff/claude-cowork-receipts",
+  "license": "MIT",
   "keywords": ["receipts", "cowork", "usage report", "activity report", "productivity"]
 }

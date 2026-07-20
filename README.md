@@ -51,4 +51,4 @@ If your Cowork setup supports installing plugins directly from a GitHub URL, you
 
 ## License
 
-No license file is included — add one appropriate to how you intend to share this (MIT is a common, permissive default for small utility plugins like this one).
+MIT — see [LICENSE](LICENSE).
