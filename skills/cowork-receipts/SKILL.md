@@ -1,6 +1,6 @@
 ---
 name: cowork-receipts
-description: Generates a personal Cowork activity report ("receipts") from the local Cowork session history on this machine, producing a markdown report and a styled, printable HTML receipt grouped by topic. Use this whenever someone asks for their "Cowork receipts", "Cowork usage report", "what have I shipped in Cowork", "Cowork activity report", or wants to redo/update a previous receipts run. Defaults to the last 30 Cowork sessions (a session count, not a date range, since Cowork does not expose session timestamps). Does not cover Claude Chat (claude.ai) — no tool available in Cowork reads that conversation history.
+description: Generates a personal Cowork activity report ("receipts") from the local Cowork session history on this machine, producing a markdown report and a styled, printable HTML receipt grouped by topic. Use this whenever someone asks for their "Cowork receipts", "Cowork usage report", "what have I shipped in Cowork", "Cowork activity report", or wants to redo/update a previous receipts run. Defaults to the last 30 Cowork sessions (a session count, not a date range, since Cowork does not expose session timestamps). Claude Chat is not included — it only analyzes Cowork sessions.
 ---
 
 # Cowork Receipts
@@ -23,7 +23,7 @@ Parse an optional session-count argument from the request (default **30**). Reco
 4. **Count deliverables per topic** by reading what was actually produced in each session: files written (`Write`, `Edit` + `mcp__cowork__present_files`), decks/docs/spreadsheets, skills built or customized (`Skill` invocations followed by file creation), live artifacts installed (`mcp__cowork__create_artifact`), Slack messages sent or drafted (`slack_send_message`, `slack_send_message_draft`), scheduled tasks created. Do not double-count the same deliverable across topics.
 5. **Try to establish a rough calendar span** for context (not required for the headline scope, which is session count): scan transcripts for decodable evidence — a Slack permalink of the form `/p<13-digit-number>` (decode the leading 10 digits as a Unix timestamp), or an explicit date typed in the transcript text (e.g. "Tuesday, June 30, 2026"). Report the span as approximate ("spans 2026-07-06 to 2026-07-20, ~15 days") and say plainly that it's estimated, not exact, since most sessions carry no timestamp at all.
 6. **Never compute or invent a dollar cost or "hours saved" figure.** Neither has a real local baseline; both would be inferred, not measured, and would undermine the credibility of everything else in the report. If the user wants spend, point them to the Console.
-7. **State plainly that Claude Chat (claude.ai) is out of scope.** No tool available in a Cowork session reads Chat conversation history — only local Cowork sessions on this machine are visible via `session_info`.
+7. **State plainly that Claude Chat is not included — this only analyzes Cowork sessions.**
 8. Assemble a single JSON data object matching `references/data-schema.json` — user name, session count, period label, headline metrics, a total/headline metric, the by-topic table rows, "what you shipped" bullets, a manager-framing paragraph, table notes, and a footer note.
 9. Write that JSON to a file in the outputs folder, then run the renderer to build the actual report files:
    ```

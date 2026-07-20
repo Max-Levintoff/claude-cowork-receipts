@@ -23,7 +23,7 @@ Given that, this plugin:
 - Defaults to a **session count** (last 30), not a calendar window — Cowork doesn't expose session timestamps, and interpolating them from embedded links doesn't scale as a repeatable method.
 - Groups sessions into a small number of **topics** by model judgment rather than by git project.
 - Never computes cost or "hours saved" — no local baseline exists for either in Cowork any more than in Claude Code.
-- Explicitly excludes Claude Chat (claude.ai) — no tool available in Cowork reads that conversation history.
+- Claude Chat is not included — it only analyzes Cowork sessions.
 
 ## What's in this plugin
 

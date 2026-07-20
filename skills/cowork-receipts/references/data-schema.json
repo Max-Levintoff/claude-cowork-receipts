@@ -45,5 +45,5 @@
 
   "privacy_note": "Transcripts can contain real conversation content, not just file diffs, so this describes activity rather than quoting conversations back.",
 
-  "footer_note": "Claude Chat (claude.ai) is not included — no tool available here reads that conversation history, only local Cowork sessions on this machine."
+  "footer_note": "Claude Chat is not included — this only analyzes Cowork sessions."
 }
