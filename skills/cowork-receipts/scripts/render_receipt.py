@@ -198,18 +198,16 @@ def render_html(data, generated_at):
                 esc_csv_field(t["deliverables"]),
             ])
         )
-    csv_body = "\\r\\n".join(csv_lines)
-    csv_js = csv_body.replace("\\", "\\\\").replace('"', '\\"')
-    # undo the double-escape on the deliberate \r\n separators
-    csv_js = csv_js.replace("\\\\r\\\\n", "\\r\\n")
+    csv_body = "\r\n".join(csv_lines)
+    # json.dumps produces a valid JS string literal (quotes + escaping included),
+    # so \r\n, backslashes, and quotes all come out correct without manual patching.
+    csv_js_literal = json.dumps(csv_body)
 
     safe_period = esc_html(data["period_label"])
     safe_name = esc_html(data["user_name"])
     total = data["total_metric"]
 
     csv_filename = "cowork-receipt.csv"
-    if "period_label" in data:
-        csv_filename = "cowork-receipt.csv"
 
     html = []
     html.append("<!doctype html>")
@@ -269,7 +267,7 @@ def render_html(data, generated_at):
     html.append("  </div>")
     html.append("<script>")
     html.append("(function () {")
-    html.append('  var csv = "%s";' % csv_js)
+    html.append("  var csv = %s;" % csv_js_literal)
     html.append('  var name = "%s";' % csv_filename)
     html.append("  var btn = document.getElementById('export-csv');")
     html.append("  if (!btn) return;")
@@ -291,6 +289,28 @@ def render_html(data, generated_at):
     return "\n".join(html) + "\n"
 
 
+REQUIRED_KEYS = [
+    "user_name",
+    "period_label",
+    "session_count",
+    "headline",
+    "what_shipped",
+    "topics",
+    "framing",
+    "total_metric",
+]
+
+
+def check_required_keys(data):
+    missing = [k for k in REQUIRED_KEYS if k not in data]
+    if missing:
+        print(
+            "Error: input JSON is missing required key(s): %s\n"
+            "See references/data-schema.json for the expected shape." % ", ".join(missing)
+        )
+        sys.exit(1)
+
+
 def main():
     if len(sys.argv) < 3:
         print("Usage: render_receipt.py data.json output_basename")
@@ -298,6 +318,7 @@ def main():
 
     with open(sys.argv[1], "r", encoding="utf-8") as f:
         data = json.load(f)
+    check_required_keys(data)
     base = sys.argv[2]
 
     generated_at = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
