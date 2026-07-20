@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-cowork-receipts",
+  "description": "Marketplace for the Cowork Receipts plugin: generates a personal Cowork activity report (markdown + styled HTML receipt) from local session history.",
+  "owner": {
+    "name": "Maxime Levintoff"
+  },
+  "plugins": [
+    {
+      "name": "cowork-receipts",
+      "description": "Generates a personal Cowork activity report (a markdown \"receipt\" plus a styled, printable HTML receipt) from local Cowork session transcripts, grouped by topic with a manager-ready summary.",
+      "author": {
+        "name": "Maxime Levintoff"
+      },
+      "source": "./"
+    }
+  ]
+}
