@@ -37,28 +37,17 @@ Reading N session transcripts costs real tokens, and cost compounds across a run
 
 ## Installing
 
-This source tree is intentionally missing `.claude-plugin/plugin.json`, the one file every Claude/Cowork plugin needs to be installable. It's left as a manual step because some Cowork sessions run under governance policies that block writing files named `plugin.json` from inside the session, so this plugin needs to be finished outside of Cowork.
-
-Run this in your own terminal (not inside a Cowork session) from the parent of this folder:
+Clone this repository, then package it as a Cowork plugin:
 
 ```bash
-cd cowork-receipts-src
-mkdir -p .claude-plugin
-cat > .claude-plugin/plugin.json << 'EOF'
-{
-  "name": "cowork-receipts",
-  "version": "0.1.0",
-  "description": "Generates a personal Cowork activity report (a markdown \"receipt\" plus a styled, printable HTML receipt) from local Cowork session transcripts, grouped by topic with a manager-ready summary.",
-  "author": { "name": "Your Name" },
-  "keywords": ["receipts", "cowork", "usage report", "activity report", "productivity"]
-}
-EOF
-zip -r ../cowork-receipts.plugin . -x "*.DS_Store"
+git clone https://github.com/Max-Levintoff/claude-cowork-receipts.git
+cd claude-cowork-receipts
+zip -r ../cowork-receipts.plugin . -x "*.DS_Store" -x ".git/*"
 ```
 
-That produces `cowork-receipts.plugin` in the parent directory. Drag it into Cowork (or use your org's plugin install flow) to add it.
+Drag the resulting `cowork-receipts.plugin` file into Cowork (or use your organization's plugin install flow) to add it.
 
-If you'd rather publish this to a GitHub repo instead of installing the `.plugin` file directly: create a new repo, copy this folder's contents in (plus the `plugin.json` from above), commit, and push with your own `git`/`gh` credentials. None of that touches a Cowork session, so it isn't affected by any governance restriction.
+If your Cowork setup supports installing plugins directly from a GitHub URL, you can skip the zip step and point it at this repository instead.
 
 ## License
 
