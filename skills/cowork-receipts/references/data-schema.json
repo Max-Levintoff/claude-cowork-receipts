@@ -1,0 +1,49 @@
+{
+  "_comment": "Example data file for scripts/render_receipt.py. This is a fictional, fully generic illustration — none of the names, topics, or numbers below refer to any real person, company, or event. Fill in real values from your own session analysis, then run: python3 scripts/render_receipt.py this_file.json output_basename",
+
+  "user_name": "Jordan Rivera",
+  "session_count": 30,
+  "period_label": "last 30 sessions (spans 2026-06-21 - 2026-07-20, ~30 days, active on at least 9 of them)",
+
+  "headline": [
+    {"label": "Sessions", "value": "30"},
+    {"label": "Recurring digests auto-posted", "value": "10"},
+    {"label": "Skills built or updated", "value": "2"},
+    {"label": "Live artifacts installed", "value": "1"}
+  ],
+
+  "total_metric": {"label": "Deliverables shipped", "value": "10"},
+  "total_note": "Counts distinct files, docs, decks, skills, and artifacts produced, not sessions. A chat draft and a finished deck both count as one \"shipped\" item each, even though they aren't comparable units of work.",
+
+  "topics": [
+    {"name": "Recurring morning digest automation", "sessions": 10, "pct": 33, "deliverables": "10 chat digests (auto-posted)"},
+    {"name": "Skill and tool building", "sessions": 5, "pct": 17, "deliverables": "1 new skill, 1 updated skill, 1 live artifact"},
+    {"name": "Internal tooling strategy deck", "sessions": 3, "pct": 10, "deliverables": "1 deck (revised), 1 doc fix"},
+    {"name": "IT and access administration", "sessions": 3, "pct": 10, "deliverables": "1 config edit, 1 audit answer, 1 escalation draft"},
+    {"name": "Vendor security review", "sessions": 2, "pct": 7, "deliverables": "3 message drafts (leadership, vendor outreach)"},
+    {"name": "Competitive research", "sessions": 2, "pct": 7, "deliverables": "1 brief"},
+    {"name": "People / feedback", "sessions": 1, "pct": 3, "deliverables": "1 feedback draft"},
+    {"name": "Compliance research", "sessions": 1, "pct": 3, "deliverables": "1 reply draft"},
+    {"name": "Data / ops", "sessions": 1, "pct": 3, "deliverables": "1 roster file"},
+    {"name": "Personal", "sessions": 1, "pct": 3, "deliverables": "1 diagram"}
+  ],
+
+  "what_shipped": [
+    "10 deliverables produced: a slide deck, a board-ready competitive brief, a new installable skill, a live triage artifact, a customized skill, a reference guide, an updated roster, a doc fix, a revised feedback draft, and a diagram.",
+    "10 digests posted to chat automatically, one per weekday run, with no one asking each time.",
+    "Several message drafts prepared for review across a vendor security review, an IT escalation, and an internal announcement."
+  ],
+
+  "framing": "A third of this window is autonomous: the recurring digest runs unattended each weekday and produces a decision-ready summary without anyone asking for it that day. The rest splits between external-facing deliverables, incident response, and investment in the tool itself. For a manager audience, lead with the tangible deliverables rather than the session count — sessions include routine automation, deliverables don't.",
+
+  "table_notes": [
+    "Deliverables are counted per topic and don't roll up into one \"total files\" figure the way a codebase diffstat would.",
+    "Percentages are of session count; Cowork doesn't expose per-session time or spend to weight this by effort instead."
+  ],
+
+  "what_counts": "This reads session transcripts and lists what was produced. It does not compute cost or \"hours saved\" — a dollar figure would be inferred from token counts rather than measured, and a saved-hours multiplier has no real baseline to compare against. Pull spend figures from the Console if you need them.",
+
+  "privacy_note": "Transcripts can contain real conversation content, not just file diffs, so this describes activity rather than quoting conversations back.",
+
+  "footer_note": "Claude Chat (claude.ai) is not included — no tool available here reads that conversation history, only local Cowork sessions on this machine."
+}
