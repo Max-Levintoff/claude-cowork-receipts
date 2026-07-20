@@ -37,6 +37,17 @@ Reading N session transcripts costs real tokens, and cost compounds across a run
 
 ## Installing
 
+Once this plugin is published to Anthropic's plugin directory, install it directly:
+
+```shell
+/plugin marketplace add anthropics/claude-plugins-community
+/plugin install cowork-receipts@claude-community
+```
+
+(If it's accepted into the official directory instead of the community one, the marketplace name will differ — check the plugin's listing page for the exact install command.)
+
+### Manual install (before publishing, or without the directory)
+
 Clone this repository, then package it as a Cowork plugin:
 
 ```bash
@@ -48,6 +59,13 @@ zip -r ../cowork-receipts.plugin . -x "*.DS_Store" -x ".git/*"
 Drag the resulting `cowork-receipts.plugin` file into Cowork (or use your organization's plugin install flow) to add it.
 
 If your Cowork setup supports installing plugins directly from a GitHub URL, you can skip the zip step and point it at this repository instead.
+
+## Submitting to the directory
+
+1. Keep this repo public — closed-source plugins aren't accepted.
+2. Run `claude plugin validate .` to check structure before submitting.
+3. Submit via [claude.ai/settings/plugins/submit](https://claude.ai/settings/plugins/submit) or [platform.claude.com/plugins/submit](https://platform.claude.com/plugins/submit), pointing at this GitHub repo (or uploading a zip).
+4. After acceptance, pushes to `main` are picked up automatically — no need to resubmit for updates.
 
 ## License
 
